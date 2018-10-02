@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class InsultGenerator { 
-  public String generateInsult() throws Exception {
+  public String generateInsult() {
       String vowels = "AEIOU";  String article = "an";  String theInsult = "";
     try {
       String databaseURL = "jdbc:postgresql://";   
@@ -22,11 +22,12 @@ public class InsultGenerator {
                     theInsult =  String.format("Thou art %s %s %s %s!", article,     rs.getString("first"), rs.getString("second"), rs.getString("noun"));    }
                         rs.close();    
                         connection.close();   }  
-          }
-              catch (Exception e) {   return "Database connection problem!";  
-        }  
+          
         InetAddress inetAddress = InetAddress. getLocalHost();
 
         return theInsult + inetAddress.getHostAddress(); 
+      }
+      catch (Exception e) {   return "Database connection problem!";  
+} 
     } 
     }
